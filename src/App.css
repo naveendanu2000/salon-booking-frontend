@@ -1,0 +1,136 @@
+@import "tailwindcss";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+@import "rsuite/dist/rsuite-no-reset.min.css";
+
+th {
+  padding: 1rem;
+  cursor: default;
+}
+
+input:focus {
+  border: none;
+  outline: none;
+}
+
+select:hover,
+select:focus,
+input:focus,
+input:hover {
+  background: rgba(255, 255, 255, 0.185);
+}
+
+select,
+::picker(select) {
+  appearance: base-select;
+}
+
+label {
+  width: fit-content;
+  align-self: center;
+}
+
+select {
+  flex: 1;
+}
+select {
+  transition: 0.4s;
+}
+
+select::picker-icon {
+  color: #999;
+  transition: 0.4s rotate;
+}
+select::picker-icon {
+  rotate: 30deg;
+}
+
+select:open::picker-icon {
+  rotate: 240deg;
+}
+::picker(select) {
+  border: none;
+  border-radius: 8px;
+  background-color: transparent;
+  color: black;
+}
+
+option {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  color: black;
+  border: 2px solid #ddd;
+  background: rgba(255, 255, 255, 0.904);
+  padding: 10px 40px;
+  transition: 0.4s;
+}
+option:first-of-type {
+  border-radius: 8px 8px 0 0;
+}
+
+option:last-of-type {
+  border-radius: 0 0 8px 8px;
+}
+
+option:not(option:last-of-type) {
+  border-bottom: none;
+}
+
+option:hover,
+option:focus {
+  background: white;
+}
+option .icon {
+  font-size: 1.6rem;
+  text-box: trim-both cap alphabetic;
+}
+option:checked {
+  font-weight: bold;
+}
+
+option::checkmark {
+  order: 1;
+  margin-left: auto;
+  content: "☑️";
+}
+
+::picker(select) {
+  opacity: 0;
+  transition: all 0.4s allow-discrete;
+}
+
+::picker(select):popover-open {
+  opacity: 1;
+}
+
+@starting-style {
+  ::picker(select):popover-open {
+    opacity: 0;
+  }
+}
+::picker(select) {
+  top: calc(anchor(top) + 3rem);
+}
+
+#hours::picker(select),
+#minutes::picker(select) {
+  border: none;
+  background-color: transparent;
+  color: black;
+  height: 10rem;
+  overflow: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+@layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+td{
+  border-bottom: 0.5px solid gray;
+}
