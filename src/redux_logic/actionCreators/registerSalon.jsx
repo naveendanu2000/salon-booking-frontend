@@ -1,7 +1,7 @@
 import api from "../../../public/api/api";
 import { toast, Slide } from "react-toastify";
 
-export const registerSalon = ({ data }) => {
+export const registerSalon = (data) => {
   return async (dispatch) => {
     dispatch({ type: "REGISTER_SALON_REQUEST" });
 
@@ -16,6 +16,7 @@ export const registerSalon = ({ data }) => {
       theme: "light",
       transition: Slide,
     });
+    console.log(data);
 
     try {
       const jwt = localStorage.getItem("jwt");

@@ -22,10 +22,16 @@ const Category = () => {
   };
 
   useEffect(() => {
-    salonDataState.salonData.id ? dispatch(getSalonData()) : null;
-    if (!salonDataState.loading)
+    if (!salonDataState.salonData?.id) {
+      dispatch(getSalonData());
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (salonDataState.salonData?.id) {
       dispatch(getCategories(salonDataState.salonData.id));
-  }, []);
+    }
+  }, [salonDataState.salonData?.id, dispatch]);
 
   const NewCategory = () => {
     const [name, setName] = useState("");

@@ -21,8 +21,14 @@ const RegisterSalon = () => {
   const [closeTimeMinutes, setCloseTimeMinutes] = useState("0");
 
   useEffect(() => {
-    salonDataState.salonData ? navigate("/admin") : null;
-  }, []);
+    if (
+      salonDataState.salonData &&
+      Object.keys(salonDataState.salonData).length > 0
+    ) {
+      console.log(salonDataState.salonData, "navigating to login");
+      navigate("/admin");
+    }
+  }, [salonDataState.salonData, navigate]);
 
   const handleOpeningHours = (hours) => {
     setOpenTimeHours(hours);
@@ -41,6 +47,21 @@ const RegisterSalon = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // console.log({
+    //   name,
+    //   address,
+    //   phoneNumber,
+    //   email,
+    //   city,
+    //   openTime: `${openTimeHours}:${openTimeMinutes}:00`,
+    //   closeTime: `${closeTimeHours}:${closeTimeMinutes}:00`,
+    //   images: [
+    //     "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    //     "https://images.unsplash.com/photo-1595475884562-073c30d45670?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    //   ],
+    // });
+
     dispatch(
       registerSalon({
         name,
@@ -48,8 +69,14 @@ const RegisterSalon = () => {
         phoneNumber,
         email,
         city,
-        openTime: `${openTimeHours}:${openTimeMinutes}:00`,
-        closeTime: `${closeTimeHours}:${closeTimeMinutes}:00`,
+        openTime: `${
+          openTimeHours < 10 ? `0` + openTimeHours : openTimeHours
+        }:${openTimeMinutes < 10 ? `0` + openTimeMinutes : openTimeMinutes}:00`,
+        closeTime: `${
+          closeTimeHours < 10 ? `0` + closeTimeHours : closeTimeHours
+        }:${
+          closeTimeMinutes < 10 ? `0` + closeTimeMinutes : closeTimeMinutes
+        }:00`,
         images: [
           "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
           "https://images.unsplash.com/photo-1595475884562-073c30d45670?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -57,7 +84,7 @@ const RegisterSalon = () => {
       })
     );
 
-    navigate("/registerSalon");
+    navigate("/login");
   };
 
   return (

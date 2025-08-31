@@ -17,7 +17,13 @@ const Services = () => {
   return (
     <div>
       <h1 className="text-3xl mb-4 mx-20">Services</h1>
-      <ServicesTable data={servicesDataState} />
+      {servicesDataState.loading ? (
+        <div className="flex justify-center items-center">
+          <h1 className="text-3xl">Loading Services!</h1>
+        </div>
+      ) : (
+        <ServicesTable data={servicesDataState} />
+      )}
     </div>
   );
 };

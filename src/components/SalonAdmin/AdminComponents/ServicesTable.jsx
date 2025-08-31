@@ -89,7 +89,7 @@ const ServicesTable = ({ data }) => {
                       ></img>
                     </td>
                     <td>{item.name}</td>
-                    <td>{item.price}</td>
+                    <td>Rs. {item.price}</td>
                   </>
                 )}
                 <td>
